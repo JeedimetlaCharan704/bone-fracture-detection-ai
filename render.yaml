@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: bone-fracture-api
+    runtime: python
+    repo: https://github.com/JeedimetlaCharan704/bone-fracture-detection-ai
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MODEL_TYPE
+        value: mock
+      - key: HOST
+        value: 0.0.0.0
