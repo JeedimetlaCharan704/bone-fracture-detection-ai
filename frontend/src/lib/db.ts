@@ -16,12 +16,6 @@ if (!global.mongooseCache) {
   global.mongooseCache = cached
 }
 
-export async function isMongoAvailable(): Promise<boolean> {
-  const uri = process.env.MONGODB_URI
-  if (!uri) return false
-  return true
-}
-
 export async function connectDB() {
   const uri = process.env.MONGODB_URI
   if (!uri) return null
@@ -29,14 +23,18 @@ export async function connectDB() {
   if (cached.conn) return cached.conn
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(uri, { bufferCommands: false })
+    cached.promise = mongoose.connect(uri, {
+      bufferCommands: false,
+      serverSelectionTimeoutMS: 5000,
+    })
   }
 
   try {
     cached.conn = await cached.promise
     return cached.conn
   } catch (e) {
+    console.error("MongoDB connection failed, using local store:", e)
     cached.promise = null
-    throw e
+    return null
   }
 }
