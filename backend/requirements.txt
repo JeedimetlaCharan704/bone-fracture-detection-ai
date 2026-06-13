@@ -1,0 +1,12 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+Pillow==11.1.0
+numpy==2.2.3
+python-dotenv==1.0.1
+pydantic-settings==2.7.1
+# Uncomment for YOLOv11 integration:
+# ultralytics==8.3.0
+# Uncomment for PyTorch integration:
+# torch>=2.0.0
+# torchvision>=0.15.0
