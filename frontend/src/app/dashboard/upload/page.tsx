@@ -17,9 +17,9 @@ async function mockPredict(imageUrl: string): Promise<PredictionResult> {
   const random = Math.random()
   return {
     fractureDetected: random > 0.5,
-    confidence: 0.85 + Math.random() * 0.14,
+    confidence: 0.97 + Math.random() * 0.029,
     summary: random > 0.5
-      ? "Possible fracture detected in the distal radius region. A non-displaced cortical breach is visible. Further clinical correlation recommended."
+      ? "Fracture detected with high confidence in the distal radius region. A non-displaced cortical breach is clearly visible. Clinical correlation recommended."
       : "No fracture detected. Bone density and cortical margins appear within normal limits. No acute abnormality identified.",
     regions: random > 0.5 ? ["Distal radius", "Cortical breach"] : [],
   }
